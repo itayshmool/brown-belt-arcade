@@ -1,30 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  /* Japanese Arcade palette */
-  --color-bg: #0a0a1a;
-  --color-bg-card: #12122a;
-  --color-bg-card-hover: #1a1a3a;
-  --color-border: #2a2a5a;
-  --color-border-glow: #ff4d8d;
+  /* Neo Tokyo palette */
+  --color-bg: #fafafa;
+  --color-bg-card: #ffffff;
+  --color-bg-dark: #1a1a1a;
+  --color-border: #e0e0e0;
+  --color-border-bold: #1a1a1a;
 
-  /* Neon accents */
-  --color-pink: #ff4d8d;
-  --color-pink-dim: #cc3d71;
-  --color-cyan: #00e5ff;
-  --color-gold: #ffd700;
-  --color-green: #39ff14;
-  --color-purple: #b44dff;
-  --color-orange: #ff8c00;
+  /* Accents */
+  --color-red: #e60012;
+  --color-red-dim: #cc0010;
+  --color-yellow: #ffcc00;
+  --color-blue: #0066cc;
+  --color-green: #00a651;
+  --color-purple: #7b2d8e;
+  --color-orange: #ee7800;
 
   /* Text */
-  --color-text: #f0f0ff;
-  --color-text-secondary: #b8b8d0;
-  --color-text-muted: #7878a0;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #555555;
+  --color-text-muted: #999999;
 
   /* Fonts */
   --font-pixel: "Press Start 2P", monospace;
-  --font-body: "DotGothic16", "M PLUS Rounded 1c", sans-serif;
+  --font-body: "M PLUS Rounded 1c", sans-serif;
 }
 
 @layer base {
@@ -35,41 +35,23 @@
   }
 }
 
-/* Scanline overlay */
-.scanlines::after {
+/* Subtle vertical speed lines */
+.speed-lines::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.08) 2px,
-    rgba(0, 0, 0, 0.08) 4px
-  );
+  opacity: 0.015;
   pointer-events: none;
-  z-index: 50;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-bg-dark) 0px,
+    var(--color-bg-dark) 1px,
+    transparent 1px,
+    transparent 40px
+  );
 }
 
-/* Pixel border */
-.pixel-border {
-  box-shadow:
-    inset -4px -4px 0px 0px rgba(0, 0, 0, 0.3),
-    inset 4px 4px 0px 0px rgba(255, 255, 255, 0.1);
-}
-
-/* Neon glow */
-.neon-pink {
-  text-shadow: 0 0 7px var(--color-pink), 0 0 20px var(--color-pink),
-    0 0 40px var(--color-pink);
-}
-
-.neon-cyan {
-  text-shadow: 0 0 7px var(--color-cyan), 0 0 20px var(--color-cyan),
-    0 0 40px var(--color-cyan);
-}
-
-/* Blink animation for "PRESS START" style */
+/* Blink animation */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
@@ -81,16 +63,8 @@
 /* Float animation */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-6px); }
 }
 .float {
   animation: float 3s ease-in-out infinite;
-}
-
-/* Pixel grid background */
-.pixel-grid {
-  background-image:
-    linear-gradient(rgba(255, 77, 141, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 77, 141, 0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
 }

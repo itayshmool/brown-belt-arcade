@@ -4,22 +4,32 @@ import Link from "next/link";
 import type { Product } from "@/data/products";
 import { CategoryBadge } from "./CategoryBadge";
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({
+  product,
+  index,
+}: {
+  product: Product;
+  index: number;
+}) {
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group relative block overflow-hidden rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-bg-card)] transition-all duration-300 hover:border-[var(--color-pink)] hover:shadow-[0_0_20px_rgba(255,77,141,0.2),inset_0_0_20px_rgba(255,77,141,0.05)]"
+      className="group relative block border-3 border-[var(--color-bg-dark)] bg-[var(--color-bg-card)] transition-all duration-150 hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[6px_6px_0_var(--color-yellow)]"
+      style={{ borderWidth: "3px" }}
     >
-      {/* Top bar - arcade style */}
-      <div className="flex items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-bg)]/50 px-4 py-2">
+      {/* Top bar - dark header */}
+      <div
+        className="flex items-center justify-between bg-[var(--color-bg-dark)] px-4 py-2"
+        style={{ borderBottom: "3px solid var(--color-bg-dark)" }}
+      >
         <CategoryBadge category={product.category} />
-        <span className="font-[var(--font-pixel)] text-[8px] text-[var(--color-text-muted)]">
+        <span className="font-[var(--font-pixel)] text-[7px] text-[var(--color-text-muted)]">
           {product.platform}
         </span>
       </div>
 
       <div className="p-5">
-        <h3 className="mb-2 font-[var(--font-pixel)] text-sm leading-relaxed text-[var(--color-gold)] transition-colors group-hover:text-[var(--color-pink)]">
+        <h3 className="mb-2 font-[var(--font-pixel)] text-[11px] leading-relaxed text-[var(--color-text)] transition-colors group-hover:text-[var(--color-red)]">
           {product.name}
         </h3>
 
@@ -27,28 +37,30 @@ export function ProductCard({ product }: { product: Product }) {
           {product.description}
         </p>
 
-        {/* Owners as avatars */}
+        {/* Owners */}
         <div className="flex items-center gap-2">
-          <div className="flex -space-x-2">
+          <div className="flex -space-x-1.5">
             {product.owners.map((owner) => (
               <img
                 key={owner.github}
                 src={`${owner.avatar}?s=64`}
                 alt={owner.name}
-                width={24}
-                height={24}
-                className="rounded-sm border border-[var(--color-border)] grayscale transition-all group-hover:grayscale-0"
+                width={22}
+                height={22}
+                className="border-2 border-[var(--color-bg-dark)]"
               />
             ))}
           </div>
-          <span className="font-[var(--font-pixel)] text-[8px] text-[var(--color-text-muted)]">
+          <span className="font-[var(--font-pixel)] text-[7px] text-[var(--color-text-muted)]">
             {product.owners.map((o) => o.name.split(" ")[0]).join(", ")}
           </span>
         </div>
       </div>
 
-      {/* Corner decoration */}
-      <div className="absolute right-0 top-0 h-0 w-0 border-l-[20px] border-t-[20px] border-l-transparent border-t-[var(--color-pink)]/0 transition-all group-hover:border-t-[var(--color-pink)]/60" />
+      {/* Index number */}
+      <span className="absolute right-3 top-10 font-[var(--font-pixel)] text-[7px] text-[var(--color-text-muted)]">
+        {String(index + 1).padStart(2, "0")}
+      </span>
     </Link>
   );
 }

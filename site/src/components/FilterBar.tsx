@@ -26,10 +26,10 @@ export function FilterBar({
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => onCategoryChange(null)}
-          className={`rounded border px-3 py-1.5 font-[var(--font-pixel)] text-[10px] uppercase tracking-wider transition-all ${
+          className={`border-2 px-3 py-1.5 font-[var(--font-pixel)] text-[9px] uppercase tracking-wider transition-all ${
             activeCategory === null
-              ? "border-[var(--color-pink)] bg-[var(--color-pink)]/20 text-[var(--color-pink)] shadow-[0_0_10px_rgba(255,77,141,0.3)]"
-              : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-pink)]/50 hover:text-[var(--color-text)]"
+              ? "border-[var(--color-bg-dark)] bg-[var(--color-bg-dark)] text-white"
+              : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-bg-dark)] hover:text-[var(--color-text)]"
           }`}
         >
           All
@@ -37,11 +37,13 @@ export function FilterBar({
         {categories.map((cat) => (
           <button
             key={cat}
-            onClick={() => onCategoryChange(activeCategory === cat ? null : cat)}
-            className={`rounded border px-3 py-1.5 font-[var(--font-pixel)] text-[10px] uppercase tracking-wider transition-all ${
+            onClick={() =>
+              onCategoryChange(activeCategory === cat ? null : cat)
+            }
+            className={`border-2 px-3 py-1.5 font-[var(--font-pixel)] text-[9px] uppercase tracking-wider transition-all ${
               activeCategory === cat
-                ? "border-[var(--color-pink)] bg-[var(--color-pink)]/20 text-[var(--color-pink)] shadow-[0_0_10px_rgba(255,77,141,0.3)]"
-                : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-pink)]/50 hover:text-[var(--color-text)]"
+                ? "border-[var(--color-bg-dark)] bg-[var(--color-bg-dark)] text-white"
+                : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-bg-dark)] hover:text-[var(--color-text)]"
             }`}
           >
             {cat}
@@ -50,7 +52,7 @@ export function FilterBar({
       </div>
 
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 font-[var(--font-pixel)] text-[10px] text-[var(--color-pink)]">
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 font-[var(--font-pixel)] text-[10px] text-[var(--color-red)]">
           &#9654;
         </span>
         <input
@@ -58,7 +60,7 @@ export function FilterBar({
           placeholder="SEARCH..."
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="w-full rounded border border-[var(--color-border)] bg-[var(--color-bg-card)] py-2 pl-8 pr-4 font-[var(--font-pixel)] text-[10px] text-[var(--color-text)] placeholder-[var(--color-text-muted)] outline-none transition-colors focus:border-[var(--color-cyan)] focus:shadow-[0_0_10px_rgba(0,229,255,0.2)] sm:w-56"
+          className="w-full border-2 border-[var(--color-border)] bg-white py-2 pl-8 pr-4 font-[var(--font-pixel)] text-[9px] text-[var(--color-text)] placeholder-[var(--color-text-muted)] outline-none transition-all focus:border-[var(--color-bg-dark)] sm:w-56"
         />
       </div>
     </div>
